@@ -3,7 +3,7 @@ const app = express();
 const cors = require('cors');
 const body = require('body-parser');
 const router = express.Router();
-const port = 2000 ||process.env.port;
+const port = 4000 ||process.env.port;
 
 //Swager
 const swaggerUI = require("swagger-ui-express");
