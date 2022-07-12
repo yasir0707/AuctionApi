@@ -1,0 +1,279 @@
+openapi: 3.0.0
+info:
+  title: Auction
+  contact: {}
+  version: '1.0'
+servers:
+- url: http://localhost:2000
+  variables: {}
+paths:
+  /register/add:
+    post:
+      tags:
+      - Register
+      summary: Register
+      operationId: Register
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+            example:
+              Name: yasir
+              Number: '3245848646'
+              Age: '22'
+              Password: '123'
+              Role: '1'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /register/Login:
+    post:
+      tags:
+      - Register
+      summary: Login
+      operationId: Login
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+            example:
+              Name: yasir
+              Number: '3245848646'
+              Age: '22'
+              Password: '123'
+              Role: '1'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /Seller/AddCategory:
+    post:
+      tags:
+      - Seller
+      summary: Add Category
+      operationId: AddCategory
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddCategoryRequest'
+            example:
+              Name: yasir
+              Number: '3245848646'
+              Age: '22'
+              Password: '123'
+              Role: '1'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /Seller/SubCategory:
+    post:
+      tags:
+      - Seller
+      summary: Add SubCategory
+      operationId: AddSubCategory
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddSubCategoryRequest'
+            example:
+              CategoryId: yasir
+              Number: '3245848646'
+              Age: '22'
+              Password: '123'
+              Role: '1'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /Seller/Product:
+    post:
+      tags:
+      - Seller
+      summary: Add Product
+      operationId: AddProduct
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddProductRequest'
+            example:
+              CategoryId: yasir
+              Number: '3245848646'
+              Age: '22'
+              Password: '123'
+              Role: '1'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+components:
+  schemas:
+    RegisterRequest:
+      title: RegisterRequest
+      required:
+      - Name
+      - Number
+      - Age
+      - Password
+      - Role
+      type: object
+      properties:
+        Name:
+          type: string
+        Number:
+          type: string
+        Age:
+          type: string
+        Password:
+          type: string
+        Role:
+          type: string
+      example:
+        Name: yasir
+        Number: '3245848646'
+        Age: '22'
+        Password: '123'
+        Role: '1'
+    AddCategoryRequest:
+      title: AddCategoryRequest
+      required:
+      - Name
+      - Number
+      - Age
+      - Password
+      - Role
+      type: object
+      properties:
+        Name:
+          type: string
+        Number:
+          type: string
+        Age:
+          type: string
+        Password:
+          type: string
+        Role:
+          type: string
+      example:
+        Name: yasir
+        Number: '3245848646'
+        Age: '22'
+        Password: '123'
+        Role: '1'
+    AddSubCategoryRequest:
+      title: AddSubCategoryRequest
+      required:
+      - CategoryId
+      - Number
+      - Age
+      - Password
+      - Role
+      type: object
+      properties:
+        CategoryId:
+          type: string
+        Number:
+          type: string
+        Age:
+          type: string
+        Password:
+          type: string
+        Role:
+          type: string
+      example:
+        CategoryId: yasir
+        Number: '3245848646'
+        Age: '22'
+        Password: '123'
+        Role: '1'
+    AddProductRequest:
+      title: AddProductRequest
+      required:
+      - CategoryId
+      - Number
+      - Age
+      - Password
+      - Role
+      type: object
+      properties:
+        CategoryId:
+          type: string
+        Number:
+          type: string
+        Age:
+          type: string
+        Password:
+          type: string
+        Role:
+          type: string
+      example:
+        CategoryId: yasir
+        Number: '3245848646'
+        Age: '22'
+        Password: '123'
+        Role: '1'
+    LoginRequest:
+      title: LoginRequest
+      required:
+      - Name
+      - Number
+      - Age
+      - Password
+      - Role
+      type: object
+      properties:
+        Name:
+          type: string
+        Number:
+          type: string
+        Age:
+          type: string
+        Password:
+          type: string
+        Role:
+          type: string
+      example:
+        Name: yasir
+        Number: '3245848646'
+        Age: '22'
+        Password: '123'
+        Role: '1'
+  securitySchemes:
+    httpBearer:
+      type: http
+      scheme: bearer
+security:
+- httpBearer: []
+tags:
+- name: Register
+  description: ''
+- name: Seller
+  description: ''
