@@ -1,0 +1,155 @@
+openapi: 3.0.0
+info:
+  title: Auction
+  contact: {}
+  version: "1.0"
+servers:
+  - url: http://localhost:6000
+    variables: {}
+paths:
+  /admin/ShowaddCategory:
+    post:
+      tags:
+        - Admin
+      summary: Show All Category Admin
+      operationId: ShowAllCategoryAdmin
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+  /admin/ShowSubCategory:
+    post:
+      tags:
+        - Admin
+      summary: Show All SubCategory Admin
+      operationId: ShowAllSubCategoryAdmin
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+  /admin/ShowProduct:
+    post:
+      tags:
+        - Admin
+      summary: Show All Product Admin
+      operationId: ShowAllProductAdmin
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+  /admin/ShowProduct/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The Product ID
+    post:
+      tags:
+        - Admin
+      summary: Show Single Product Admin
+      operationId: ShowSingleProductAdmin
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+  /admin/ShowUser:
+    post:
+      tags:
+        - Admin
+      summary: Show User Admin
+      operationId: ShowUserAdmin
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+components:
+  schemas:
+    RegisterRequest:
+      title: RegisterRequest
+      required:
+        - Name
+        - Number
+        - Age
+        - Password
+        - Role
+      type: object
+      properties:
+        Name:
+          type: string
+        Number:
+          type: string
+        Age:
+          type: string
+        Password:
+          type: string
+        Role:
+          type: string
+      example:
+        Name: Asadullah
+        Number: "3470058992"
+        Age: "24"
+        Password: "123456"
+        Role: "1"
+    LoginRequest:
+      title: LoginRequest
+      required:
+        - Number
+        - Password
+      type: object
+      properties:
+        Number:
+          type: string
+        Password:
+          type: string
+      example:
+        Number: "3470058992"
+        Password: "123456"
+    DeleteCategoryRequest:
+      title: DeleteCategoryRequest
+      required:
+        - CategoryId
+      type: object
+      properties:
+        CategoryId:
+          type: string
+      example:
+        CategoryId: 629295f268b1a5c663abdd22
+    DeleteSubCategoryRequest:
+      title: DeleteSubCategoryRequest
+      required:
+        - SubCategoryId
+      type: object
+      properties:
+        SubCategoryId:
+          type: string
+      example:
+        SubCategoryId: 62c5b9884e342dd78c352818
+    DeleteProductRequest:
+      title: DeleteProductRequest
+      required:
+        - ProductId
+      type: object
+      properties:
+        ProductId:
+          type: string
+      example:
+        ProductId: 62c66352ffd0d4865848ce19
+tags:
+  - name: Auth
+    description: ""
+  - name: Seller
+    description: ""
+  - name: Admin
+    description: ""

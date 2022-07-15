@@ -3,7 +3,7 @@ const app = express();
 const cors = require('cors');
 const body = require('body-parser');
 const router = express.Router();
-const port = 2001 ||process.env.port;
+const port = 8000 ||process.env.port;
 
 
 app.all('/*', function(req, res, next) {
@@ -17,6 +17,17 @@ app.all('/*', function(req, res, next) {
  app.use(body.urlencoded({ extended: false }));
 app.use(body.json());
 
+
+//swagger
+const swaggerUI = require("swagger-ui-express");
+const YAML = require("yamljs");
+const swaggerDocument = YAML.load("./swagger.yaml");
+
+app.get("/", (req, res) => {
+  res.send(`<h1>Auction API</h1><a href="/api-docs">Documentation</a>`);
+});
+
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
 
 

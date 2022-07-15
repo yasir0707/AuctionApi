@@ -1,0 +1,334 @@
+openapi: 3.0.0
+info:
+  title: Auction
+  contact: {}
+  version: "1.0"
+servers:
+  - url: http://localhost:7000
+    variables: {}
+paths:
+  /seller/AddCategory:
+    post:
+      tags:
+        - Seller
+      summary: Add Category
+      operationId: AddCategory
+      parameters: []
+      requestBody:
+        content:
+          multipart/form-data:
+            encoding: {}
+            schema:
+              required:
+                - CategoryName
+                - file
+              type: object
+              properties:
+                CategoryName:
+                  type: string
+                  example: Book
+                file:
+                  type: string
+                  format: binary
+        required: false
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+  /seller/ShowaddCategory:
+    post:
+      tags:
+        - Seller
+      summary: Show All Category
+      operationId: ShowAllCategory
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+  /seller/SubCategory:
+    post:
+      tags:
+        - Seller
+      summary: Add SubCategory
+      operationId: AddSubCategory
+      parameters: []
+      requestBody:
+        content:
+          multipart/form-data:
+            encoding: {}
+            schema:
+              required:
+                - CategoryId
+                - file
+                - SubcategoryName
+              type: object
+              properties:
+                CategoryId:
+                  type: string
+                  example: 62929509a4876f27820a73d4
+                file:
+                  type: string
+                  format: binary
+                SubcategoryName:
+                  type: string
+                  example: English
+        required: false
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+  /seller/ShowSubCategory:
+    post:
+      tags:
+        - Seller
+      summary: Show All SubCategory
+      operationId: ShowAllSubCategory
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+  /seller/Product:
+    post:
+      tags:
+        - Seller
+      summary: Add Product
+      operationId: AddProduct
+      parameters: []
+      requestBody:
+        content:
+          multipart/form-data:
+            encoding: {}
+            schema:
+              required:
+                - CategoryId
+                - SubcategoryId
+                - ProductName
+                - file
+                - ProductTitle
+                - ProductDesc
+                - ProductPrice
+                - Quantity
+                - CarretQuantity
+                - Time
+              type: object
+              properties:
+                CategoryId:
+                  type: string
+                  example: 62929509a4876f27820a73d4
+                SubcategoryId:
+                  type: string
+                  example: 62c4c4a9f6d213b72e6b7a1f
+                ProductName:
+                  type: string
+                  example: Apple
+                file:
+                  type: string
+                  format: binary
+                ProductTitle:
+                  type: string
+                  example: uisdheui
+                ProductDesc:
+                  type: string
+                  example: ijrewi
+                ProductPrice:
+                  type: integer
+                  format: int32
+                  example: 45
+                Quantity:
+                  type: integer
+                  format: int32
+                  example: 12
+                CarretQuantity:
+                  type: integer
+                  format: int32
+                  example: 17
+                Time:
+                  type: integer
+                  format: int32
+                  example: 5
+        required: false
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+  /seller/ShowProduct:
+    post:
+      tags:
+        - Seller
+      summary: Show All Product
+      operationId: ShowAllProduct
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+  /seller/ShowProduct/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The Product ID
+    post:
+      tags:
+        - Seller
+      summary: Show Single Product
+      operationId: ShowSingleProduct
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+  /seller/deleteCategory:
+    post:
+      tags:
+        - Seller
+      summary: Delete Category
+      operationId: DeleteCategory
+      parameters: []
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DeleteCategoryRequest"
+            example:
+              CategoryId: 629295f268b1a5c663abdd22
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+  /seller/deleteSubCategory:
+    post:
+      tags:
+        - Seller
+      summary: Delete SubCategory
+      operationId: DeleteSubCategory
+      parameters: []
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DeleteSubCategoryRequest"
+            example:
+              SubCategoryId: 62c5b9884e342dd78c352818
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+  /seller/deleteProduct:
+    post:
+      tags:
+        - Seller
+      summary: Delete Product
+      operationId: DeleteProduct
+      parameters: []
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DeleteProductRequest"
+            example:
+              ProductId: 62c66352ffd0d4865848ce19
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+
+components:
+  schemas:
+    RegisterRequest:
+      title: RegisterRequest
+      required:
+        - Name
+        - Number
+        - Age
+        - Password
+        - Role
+      type: object
+      properties:
+        Name:
+          type: string
+        Number:
+          type: string
+        Age:
+          type: string
+        Password:
+          type: string
+        Role:
+          type: string
+      example:
+        Name: Asadullah
+        Number: "3470058992"
+        Age: "24"
+        Password: "123456"
+        Role: "1"
+    LoginRequest:
+      title: LoginRequest
+      required:
+        - Number
+        - Password
+      type: object
+      properties:
+        Number:
+          type: string
+        Password:
+          type: string
+      example:
+        Number: "3470058992"
+        Password: "123456"
+    DeleteCategoryRequest:
+      title: DeleteCategoryRequest
+      required:
+        - CategoryId
+      type: object
+      properties:
+        CategoryId:
+          type: string
+      example:
+        CategoryId: 629295f268b1a5c663abdd22
+    DeleteSubCategoryRequest:
+      title: DeleteSubCategoryRequest
+      required:
+        - SubCategoryId
+      type: object
+      properties:
+        SubCategoryId:
+          type: string
+      example:
+        SubCategoryId: 62c5b9884e342dd78c352818
+    DeleteProductRequest:
+      title: DeleteProductRequest
+      required:
+        - ProductId
+      type: object
+      properties:
+        ProductId:
+          type: string
+      example:
+        ProductId: 62c66352ffd0d4865848ce19
+tags:
+  - name: Auth
+    description: ""
+  - name: Seller
+    description: ""
+  - name: Admin
+    description: ""
