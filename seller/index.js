@@ -18,6 +18,10 @@ app.all('/*', function(req, res, next) {
 app.use(body.json());
 
 
+
+
+
+
 //swagger
 const swaggerUI = require("swagger-ui-express");
 const YAML = require("yamljs");
@@ -27,11 +31,19 @@ app.get("/", (req, res) => {
   res.send(`<h1>Auction API</h1><a href="/api-docs">Documentation</a>`);
 });
 
+
+function myFunc(arg) {
+  console.log(`arg was => ${arg}`);
+}
+
+setTimeout(myFunc, 1500, 'funky');
+
+
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
-
-
+app.use("/image",express.static("./upload/"))
 
 app.use('/seller',require('./routes/Seller'))
 
-  app.listen(port,()=>{console.log(port)});
+
+app.listen(port,()=>{console.log(port)});

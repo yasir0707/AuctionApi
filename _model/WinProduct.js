@@ -1,8 +1,11 @@
 var mongoose = require('./conn');
 
-var ProductSchema = new mongoose.Schema({
+var WinProductSchema = new mongoose.Schema({
   
-    
+    ProductId:{
+        type: String,
+        required:true
+    },
     CategoryId:{
         type: String,
         required:true
@@ -57,4 +60,4 @@ var ProductSchema = new mongoose.Schema({
 
 }
 );
-module.exports = mongoose.model('product',ProductSchema);
+module.exports = mongoose.model('WinProduct',WinProductSchema);
