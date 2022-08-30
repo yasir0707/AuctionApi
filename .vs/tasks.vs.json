@@ -1,0 +1,15 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskLabel": "task-AuctionAPi",
+      "appliesTo": "/",
+      "type": "launch"
+    },
+    {
+      "taskLabel": "task-Registeration",
+      "appliesTo": "Registeration/",
+      "type": "launch"
+    }
+  ]
+}

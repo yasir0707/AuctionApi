@@ -6,12 +6,9 @@
 			"label": "docker-build",
 			"platform": "node",
 			"dockerBuild": {
-				"dockerfile": "${workspaceFolder}/seller/Dockerfile",
-				"context": "${workspaceFolder}/seller",
+				"dockerfile": "${workspaceFolder}/Dockerfile",
+				"context": "${workspaceFolder}",
 				"pull": true
-			},
-			"node": {
-				"package": "${workspaceFolder}/seller/package.json"
 			}
 		},
 		{
@@ -20,10 +17,7 @@
 			"dependsOn": [
 				"docker-build"
 			],
-			"platform": "node",
-			"node": {
-				"package": "${workspaceFolder}/seller/package.json"
-			}
+			"platform": "node"
 		},
 		{
 			"type": "docker-run",
@@ -38,7 +32,6 @@
 				}
 			},
 			"node": {
-				"package": "${workspaceFolder}/seller/package.json",
 				"enableDebugging": true
 			}
 		}

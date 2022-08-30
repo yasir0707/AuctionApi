@@ -1,6 +1,5 @@
 {
     "configurations": [
-        
         {
             "command": "npm start",
             "name": "Run npm start",
@@ -23,8 +22,8 @@
             "preLaunchTask": "docker-run: debug",
             "platform": "node",
             "node": {
-                "package": "${workspaceFolder}/User/package.json",
-                "localRoot": "${workspaceFolder}/User"
+                "package": "${workspaceFolder}/seller/package.json",
+                "localRoot": "${workspaceFolder}/seller"
             }
         }
     ]
