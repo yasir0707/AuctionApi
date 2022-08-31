@@ -41,7 +41,7 @@ setTimeout(myFunc, 1500, 'funky');
 
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
-app.use("/image",express.static("./upload/"))
+app.use("/image",express.static("../public/upload/"))
 
 app.use('/seller',require('./routes/Seller'))
 
