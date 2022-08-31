@@ -76,9 +76,9 @@ route.post("/Login", async (req, res) => {
 
     if (req.body.Number != null) {
       if (req.body.Password != null) {
-        const CheckNumber = await login.findOne({ Number: req.body.Number });
+        const CheckNumber = await reg.findOne({ Number: req.body.Number });
         var CheckStatus = CheckNumber.Status;
-        if (CheckNumber.Status) {
+        // if (CheckNumber.Status) {
           if (CheckNumber == null) {
             res.status(400).send("Number not defined!");
           } else {
@@ -89,9 +89,9 @@ route.post("/Login", async (req, res) => {
               res.status(400).send("Password not matched!");
             }
           }
-        } else {
-          res.status(400).send("InActive Account!");
-        }
+        // } else {
+        //   res.status(400).send("InActive Account!");
+        // }
       } else {
         res.status(400).send("Password is Required!");
       }

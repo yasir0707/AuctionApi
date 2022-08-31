@@ -6,6 +6,7 @@ const reg = require("../../_model/register");
 const Category = require("../../_model/category");
 const SubCategory = require("../../_model/Subcategory");
 const Product = require("../../_model/Product");
+
 var multer = require("multer");
 const path = require("path");
 const Bid = require("../../_model/Bid");
@@ -215,6 +216,7 @@ route.post("/ShowaddCategory", async (req, res) => {
   logs(Request, Response, status, address, message, SDATE, EDATE);
   res.end();
 });
+
 route.post("/ShowSubCategory", async (req, res) => {
   try {
     Request = JSON.stringify(req.body);
@@ -243,6 +245,7 @@ route.post("/ShowSubCategory", async (req, res) => {
   logs(Request, Response, status, address, message, SDATE, EDATE);
   res.end();
 });
+
 route.post("/ShowProduct", async (req, res) => {
   try {
     Request = JSON.stringify(req.body);
@@ -639,7 +642,7 @@ route.post("/ShowBid/:id", async (req, res) => {
       status = res.statusMessage;
     }
     else {
-      res.status(200).send('Empty Bid');
+      res.status(400).send('Empty Bid');
       status = res.statusMessage;
     }
 
@@ -910,6 +913,42 @@ route.post("/WinBid", async (req, res) => {
     }
 
     res.status(200).jsonp({"content":showResult})
+    
+    EDATE = Date.now();
+  } catch (e) {
+    status = res.message;
+
+    message = e;
+    res.status(500).json(e.message);
+  }
+  logs(Request, Response, status, address, message, SDATE, EDATE);
+  res.end();
+});
+
+
+// Get User Detail
+route.post("/GetUserDetail/:id", async (req, res) => {
+  try {
+    Request = JSON.stringify(req.body);
+    address = req.originalUrl;
+    SDATE = Date.now();
+
+    var ShowProduct = await reg.findById({_id:req.params.id});
+    if(ShowProduct){
+      let GetData = {
+        'Name':ShowProduct.Name,
+        'Shop':ShowProduct.Shop,
+        'Number':ShowProduct.Number,
+        'Age':ShowProduct.Age
+      } 
+      res.status(200).jsonp({'content':GetData});
+      status = res.statusMessage;
+    }
+    else{
+      
+      res.status(400).send('Not Found');
+      status = res.statusMessage;
+    }
     
     EDATE = Date.now();
   } catch (e) {
