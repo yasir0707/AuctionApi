@@ -17,7 +17,7 @@ route.post("/Add", async (req, res) => {
       if (CheckNumber == null) {
         if (req.body.Password != null) {
           if (req.body.Role != null) {
-            if (req.body.Name != null) {
+            if (req.body.Name != null ) {
               const task = new reg({
                 Name: req.body.Name,
                 Number: req.body.Number,
@@ -34,27 +34,35 @@ route.post("/Add", async (req, res) => {
                 Status: req.body.Status,
               });
               if (task.save() && signin.save()) {
-                res.status(200).send("Add Register");
+                
+                res.status(200).jsonp({message:"Add Register"});
+                // res.status(200).send("Add Register");
                 status = res.statusMessage;
               } else {
                 console.log(" not save");
-                res.status(400).send("Not Register");
+                res.status(200).jsonp({message:"Not Register"});
+                // res.status(200).send("Not Register");
                 status = res.message;
               }
             } else {
-              res.status(400).send("Name is reqired");
+              res.status(200).jsonp({message:"Name is reqired"});
+              // res.status(200).send("Name is reqired");
             }
           } else {
-            res.status(400).send("Role is reqired");
+            res.status(200).jsonp({message:"Role is reqired"});
+            // res.status(200).send("Role is reqired");
           }
         } else {
-          res.status(400).send("Password is required");
+          res.status(200).jsonp({message:"Password is required"});
+          // res.status(200).send("Password is required");
         }
       } else {
-        res.status(400).send("ALready Number Registered");
+        res.status(200).jsonp({message:"ALready Number Registered"});
+        // res.status(200).send("ALready Number Registered");
       }
     } else {
-      res.status(400).send("Number is required");
+      res.status(200).jsonp({message:"Number is required"});
+      // res.status(200).send("Number is required");
     }
 
     EDATE = Date.now();
@@ -80,23 +88,28 @@ route.post("/Login", async (req, res) => {
         var CheckStatus = CheckNumber.Status;
         // if (CheckNumber.Status) {
           if (CheckNumber == null) {
-            res.status(400).send("Number not defined!");
+            res.status(200).jsonp({message:"Number not found"});
+            // res.status(200).send("Number not defined!");
           } else {
             if (CheckNumber.Password == req.body.Password) {
               res.status(200).jsonp({message:"Login Success!",id:CheckNumber._id});
               
             } else {
-              res.status(400).send("Password not matched!");
+            res.status(200).jsonp({message:"Password not matched"});
+              // res.status(200).send("Password not matched!");
             }
           }
         // } else {
-        //   res.status(400).send("InActive Account!");
+        //   res.status(200).send("InActive Account!");
         // }
       } else {
-        res.status(400).send("Password is Required!");
+        
+        res.status(200).jsonp({message:"Password is Required"});
+        // res.status(200).send("Password is Required!");
       }
     } else {
-      res.status(400).send("Number is Required!");
+      res.status(200).jsonp({message:"Number is required"});
+      // res.status(200).send("Number is Required!");
     }
 
     EDATE = Date.now();

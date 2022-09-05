@@ -110,6 +110,56 @@ route.post("/SubCategory", upload, (req, res) => {
   res.end();
 });
 
+route.post("/AddSubCategoryByName", upload, async (req, res) => {
+  try {
+    Request = JSON.stringify(req.body);
+    address = req.originalUrl;
+    SDATE = Date.now();
+    var imgName = req.file.filename;
+    var GetCategoryId
+if(req.body.CategoryName != null){
+    const GetCategory = await Category.findOne({CategoryName:req.body.CategoryName});
+    console.log(GetCategory._id);
+    GetCategoryId = GetCategory._id
+}
+else{
+  res.status(400).send("CategoryName is Required");
+  status = res.statusMessage;
+         
+} 
+
+      if (req.body.SubcategoryName != null) {
+        if (imgName != null) {
+          const SubcategoryTask = new SubCategory({
+            CategoryId: GetCategoryId,
+            SubcategoryName: req.body.SubcategoryName,
+            SubcategoryImage: imgName,
+          });
+          if (SubcategoryTask.save()) {
+            res.status(200).send("Add SubCategory");
+            status = res.statusMessage;
+          } else {
+            res.status(400).send("Not SubCateory");
+            status = res.message;
+          }
+        } else {
+          res.status(400).send("Image Not found");
+        }
+      } else {
+        res.status(400).send("SubCategoryName is reqired!");
+      }
+    
+    EDATE = Date.now();
+  } catch (e) {
+    status = res.message;
+
+    message = e;
+    res.status(500).json(e.message);
+  }
+  logs(Request, Response, status, address, message, SDATE, EDATE);
+  res.end();
+});
+
 route.post("/Product", upload, (req, res) => {
   try {
     Request = JSON.stringify(req.body);
@@ -224,6 +274,36 @@ route.post("/ShowSubCategory", async (req, res) => {
     SDATE = Date.now();
 
     var ShowAddCategory = await SubCategory.find({});
+    console.log(ShowAddCategory.length);
+
+    if (ShowAddCategory.length > 0) {
+      res.status(200).send(ShowAddCategory);
+      status = res.statusMessage;
+    }
+    else {
+      res.status(200).send('Empty SubCategory');
+      status = res.statusMessage;
+    }
+
+    EDATE = Date.now();
+  } catch (e) {
+    status = res.message;
+
+    message = e;
+    res.status(500).json(e.message);
+  }
+  logs(Request, Response, status, address, message, SDATE, EDATE);
+  res.end();
+});
+
+
+route.post("/ShowSubCategory/:id", async (req, res) => {
+  try {
+    Request = JSON.stringify(req.body);
+    address = req.originalUrl;
+    SDATE = Date.now();
+
+    var ShowAddCategory = await SubCategory.find({CategoryId:req.params.id});
     console.log(ShowAddCategory.length);
 
     if (ShowAddCategory.length > 0) {
